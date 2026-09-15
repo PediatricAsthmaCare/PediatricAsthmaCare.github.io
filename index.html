@@ -76,13 +76,21 @@
         .header-content {
             display: flex; justify-content: center; align-items: center; gap: 30px; max-width: 1000px; margin: 0 auto;
         }
-        .header-logo { width: 120px; height: 120px; object-fit: contain; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        /* تعديل الشعار لإزالة الدائرة البيضاء */
+        .header-logo { 
+            width: 130px; 
+            height: 130px; 
+            object-fit: contain; 
+            flex-shrink: 0;
+        }
+        
         .main-title { margin: 0; font-size: 3.2rem; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
         .sub-title { font-size: 1.5rem; font-weight: 700; margin-top: 10px; display: block; opacity: 0.9; }
 
         @media (max-width: 768px) {
             .header-content { flex-direction: column; }
-            .header-logo { width: 90px; height: 90px; }
+            .header-logo { width: 100px; height: 100px; }
             .main-title { font-size: 2.2rem; }
             header { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); padding-bottom: 4rem; }
         }
@@ -108,7 +116,7 @@
             margin-bottom: 50px;
             border-radius: 20px;
             box-shadow: var(--card-shadow);
-            border-right: 8px solid var(--primary-orange); /* طابع جديد للكروت */
+            border-right: 8px solid var(--primary-orange);
         }
         
         h2 { 
@@ -175,7 +183,7 @@
                 <h1 class="main-title">دليلكم المبسط لفهم ربو الأطفال</h1>
                 <span class="sub-title">نحو بيئة صحية ونفس مرتاح.. لأن وعيهم هو أمانهم</span>
             </div>
-            <img src="cover-asthma.png" alt="ربو الأطفال" class="header-logo" style="background: transparent; box-shadow: none;">
+            <img src="cover-asthma.png" alt="ربو الأطفال" class="header-logo">
         </div>
     </header>
 
