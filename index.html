@@ -41,7 +41,7 @@
             background-size: 30px 30px;
         }
 
-        /* حركات الأنيميشن */
+        /* حركات الأنيميشن عند النزول بالصفحة */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -52,9 +52,20 @@
             transform: translateY(0);
         }
 
+        /* --- حركات الهيدر عند بداية فتح الموقع --- */
+        .hero-anim { opacity: 0; transform: translateY(20px); animation: riseIn 0.8s ease forwards; }
+        .hero-anim.d1 { animation-delay: 0.1s; }
+        .hero-anim.d2 { animation-delay: 0.3s; }
+        @keyframes riseIn { to { opacity: 1; transform: translateY(0); } }
+
+        .mascot-bounce { opacity: 0; transform: scale(0.7); animation: bounceIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .mascot-bounce.d1 { animation-delay: 0.2s; }
+        .mascot-bounce.d2 { animation-delay: 0.4s; }
+        @keyframes bounceIn { to { opacity: 1; transform: scale(1); } }
+
         /* --- الشريط العلوي --- */
         .top-bar {
-            background-color: var(--primary-orange); /* تم التعديل للبرتقالي */
+            background-color: var(--primary-orange); 
             color: var(--white);
             text-align: center;
             padding: 10px 15px;
@@ -95,12 +106,12 @@
             header { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); padding-bottom: 4rem; }
         }
 
-        /* --- القائمة العائمة (تم تثبيتها وتكبيرها) --- */
+        /* --- القائمة العائمة --- */
         nav {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
-            margin: -30px auto 40px auto; /* لضبط التداخل مع الهيدر */
+            margin: -30px auto 40px auto; 
             padding: 15px 16px;
-            position: sticky; /* ثبات القائمة */
+            position: sticky; 
             top: 0; 
             z-index: 1000;
             background: var(--bg-soft);
@@ -173,7 +184,7 @@
         
         /* الفوتر */
         footer { 
-            background: var(--primary-orange); /* تم التعديل للبرتقالي */
+            background: var(--primary-orange); 
             color: white; text-align: center; 
             padding: 30px 20px; font-size: 1.1rem; margin-top: 60px; 
             border-top: 5px solid var(--dark-orange);
@@ -189,15 +200,15 @@
         <i class="fas fa-hospital"></i> مستشفى النسائية والأطفال المفرق - قسم التمريض / شعبة ICU
     </div>
 
-    <!-- الهيدر -->
+    <!-- الهيدر مع إضافة كلاسات الأنيميشن -->
     <header>
         <div class="header-content">
-            <img src="moh-logo.png" alt="وزارة الصحة" class="header-logo">
+            <img src="moh-logo.png" alt="وزارة الصحة" class="header-logo mascot-bounce d1">
             <div>
-                <h1 class="main-title">دليلكم المبسط لفهم ربو الأطفال</h1>
-                <span class="sub-title">نحو بيئة صحية ونفس مرتاح.. لأن وعيهم هو أمانهم</span>
+                <h1 class="main-title hero-anim d1">دليلكم المبسط لفهم ربو الأطفال</h1>
+                <span class="sub-title hero-anim d2">نحو بيئة صحية ونفس مرتاح.. لأن وعيهم هو أمانهم</span>
             </div>
-            <img src="cover-asthma.png" alt="ربو الأطفال" class="header-logo">
+            <img src="cover-asthma.png" alt="ربو الأطفال" class="header-logo mascot-bounce d2">
         </div>
     </header>
 
@@ -360,7 +371,6 @@
 
     </div>
 
-    <!-- تم التعديل على إغلاق الفوتر ليكون صحيحاً بدون الأسماء -->
     <footer>
         <p style="margin: 0; font-weight: 700;">مع تمنياتنا لكم ولاطفالكم بدوام الصحة والعافية</p>
     </footer>
