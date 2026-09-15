@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل ربو الأطفال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- الألوان (البرتقالي الحيوي الموحد) --- */
+        :root {
+            --primary-orange: #ff8c00; 
+            --dark-orange: #e67e22;
+            --light-orange: #fff4e6;
+            --accent-red: #e74c3c;
+            --text-dark: #2c3e50; 
+            --white: #ffffff;
+            --bg-soft: #faf9f7;
+            --card-shadow: 0 10px 30px rgba(255, 140, 0, 0.08);
+        }
+
+        /* --- إعدادات عامة --- */
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 0;
+            background-color: var(--bg-soft);
+            overflow-x: hidden;
+            text-align: right;
+        }
+
+        /* خلفية بنمط هندسي خفيف جداً */
+        .pattern-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4;
+            background-image: radial-gradient(var(--primary-orange) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* حركات الأنيميشن */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- الشريط العلوي --- */
+        .top-bar {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .top-bar i { color: var(--primary-orange); margin-left: 8px; }
+
+        /* --- الهيدر الجديد (تصميم متداخل) --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-orange), var(--dark-orange));
+            padding: 3rem 2rem 6rem 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 30px;
+        }
+        .header-content {
+            display: flex; justify-content: center; align-items: center; gap: 30px; max-width: 1000px; margin: 0 auto;
+        }
+        .header-logo { width: 120px; height: 120px; object-fit: contain; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .main-title { margin: 0; font-size: 3.2rem; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .sub-title { font-size: 1.5rem; font-weight: 700; margin-top: 10px; display: block; opacity: 0.9; }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            .header-logo { width: 90px; height: 90px; }
+            .main-title { font-size: 2.2rem; }
+            header { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); padding-bottom: 4rem; }
+        }
+
+        /* --- القائمة العائمة (تصميم جديد) --- */
+        nav {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+            margin: -60px auto 40px auto; position: relative; z-index: 10; max-width: 900px;
+        }
+        nav a { 
+            background: var(--white); color: var(--dark-orange); text-decoration: none; 
+            font-weight: 800; font-size: 1.1rem; padding: 12px 25px; border-radius: 12px;
+            box-shadow: var(--card-shadow); transition: all 0.3s; border-bottom: 3px solid transparent;
+        }
+        nav a:hover { transform: translateY(-5px); border-bottom-color: var(--primary-orange); color: var(--primary-orange); }
+
+        /* --- الحاوية الأساسية والكروت --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .section-card {
+            background: var(--white);
+            padding: 40px;
+            margin-bottom: 50px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border-right: 8px solid var(--primary-orange); /* طابع جديد للكروت */
+        }
+        
+        h2 { 
+            color: var(--text-dark); font-weight: 900; font-size: 2.2rem;
+            margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;
+        }
+        h2 i { color: var(--primary-orange); font-size: 2.5rem; }
+        
+        p { margin-bottom: 20px; font-size: 1.2rem; }
+
+        /* --- الكروت الشبكية (Grid) --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+        /* كروت العلامات التنبيهية والمفاهيم */
+        .info-box {
+            background: var(--light-orange); padding: 25px; border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .info-box:hover { transform: translateY(-5px); }
+        .info-box h4 { color: var(--primary-orange); margin: 0 0 10px 0; font-size: 1.3rem; font-weight: 800; }
+        .info-box p { margin: 0; font-size: 1.1rem; }
+
+        /* --- قسم الطوارئ (تصميم طولي للمقارنة) --- */
+        .emergency-container { display: flex; gap: 20px; }
+        .emerg-card { flex: 1; padding: 30px; border-radius: 15px; color: white; position: relative; overflow: hidden; }
+        .emerg-mild { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .emerg-severe { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .emerg-card h3 { margin-top: 0; font-size: 1.6rem; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .emerg-card h4 { font-size: 1.3rem; margin: 20px 0 10px 0; background: rgba(0,0,0,0.1); padding: 5px 10px; border-radius: 8px; display: inline-block;}
+        
+        .ul-clean { list-style: none; padding: 0; margin: 0; }
+        .ul-clean li { margin-bottom: 12px; font-size: 1.1rem; display: flex; gap: 10px; align-items: flex-start; font-weight: 500; }
+        .ul-clean li i { margin-top: 6px; font-size: 1rem; opacity: 0.9; }
+
+        @media (max-width: 800px) { .emergency-container { flex-direction: column; } }
+
+        /* --- قسم المدرسة والحقيبة --- */
+        .school-bag-wrapper { background: var(--bg-soft); padding: 30px; border-radius: 20px; border: 2px dashed var(--dark-orange); }
+        
+        /* الفوتر */
+        footer { 
+            background: var(--text-dark); color: white; text-align: center; 
+            padding: 40px 20px; font-size: 1.1rem; margin-top: 60px; 
+            border-top: 5px solid var(--primary-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pattern-bg"></div>
+
+    <!-- الشريط العلوي للمستشفى -->
+    <div class="top-bar">
+        <i class="fas fa-hospital"></i> مستشفى النسائية والأطفال المفرق - قسم التمريض / شعبة ICU
+    </div>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="header-content">
+            <img src="moh-logo.png" alt="وزارة الصحة" class="header-logo">
+            <div>
+                <h1 class="main-title">دليلكم المبسط لفهم ربو الأطفال</h1>
+                <span class="sub-title">نحو بيئة صحية ونفس مرتاح.. لأن وعيهم هو أمانهم</span>
+            </div>
+            <img src="cover-asthma.png" alt="ربو الأطفال" class="header-logo" style="background: transparent; box-shadow: none;">
+        </div>
+    </header>
+
+    <!-- القائمة -->
+    <nav>
+        <a href="#definition"><i class="fas fa-lungs"></i> ما هو الربو؟</a>
+        <a href="#prevention"><i class="fas fa-shield-alt"></i> ركائز السيطرة</a>
+        <a href="#emergency"><i class="fas fa-ambulance"></i> دليل الطوارئ</a>
+        <a href="#school"><i class="fas fa-school"></i> المدرسة والدعم</a>
+        <a href="#facts"><i class="fas fa-lightbulb"></i> حقائق تهمك</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- ما هو الربو والعلامات -->
+        <div id="definition" class="section-card reveal">
+            <h2><i class="fas fa-question-circle"></i> ما هو الربو؟ وكيف نكتشفه؟</h2>
+            <p style="font-size: 1.3rem; font-weight: 500;">
+                هو مرض مزمن يصيب الجهاز التنفسي، يؤدي لانتفاخ وضيق الشعب الهوائية وزيادة الإفرازات المخاطية، مما يعيق مرور الهواء وصعوبة في التنفس.
+            </p>
+            
+            <hr style="border: none; border-top: 2px dashed var(--light-orange); margin: 30px 0;">
+            
+            <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="color: var(--accent-red); font-size: 1.8rem; margin-top: 0;"><i class="fas fa-exclamation-triangle"></i> علامات تنبيهية</h3>
+                    <ul class="ul-clean" style="color: var(--text-dark);">
+                        <li><i class="fas fa-circle" style="color: var(--primary-orange);"></i> سعال مستمر (خاصة في الليل أو الصباح الباكر).</li>
+                        <li><i class="fas fa-circle" style="color: var(--primary-orange);"></i> صفير أو أزيز عند الزفير (صوت "وشوشة" بالصدر).</li>
+                        <li><i class="fas fa-circle" style="color: var(--primary-orange);"></i> ضيق شديد وتنفس سريع.</li>
+                        <li><i class="fas fa-circle" style="color: var(--primary-orange);"></i> شعور بضغط أو آلام في الصدر.</li>
+                    </ul>
+                </div>
+                <img src="cough-boy.png" alt="أعراض الربو" style="max-width: 200px; margin: 0 auto; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));">
+            </div>
+        </div>
+
+        <!-- ركائز السيطرة (الخطة الوقائية) -->
+        <div id="prevention" class="section-card reveal">
+            <h2><i class="fas fa-shield-virus"></i> ركائز السيطرة على الربو (الخطة الوقائية)</h2>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h4><i class="fas fa-inhaler"></i> البخاخ الوقائي:</h4>
+                    <p>الالتزام التام بأخذه يومياً حسب وصفة الطبيب، حتى في الأيام التي لا يشعر فيها الطفل بأعراض.</p>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-spray-can"></i> أنبوب المباعدة:</h4>
+                    <p>استخدامه دائماً مع البخاخ لضمان وصول الجرعة كاملة للرئتين وليس للفم.</p>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-ban"></i> تجنب المحفزات:</h4>
+                    <p>تحديد وتجنب مسببات الحساسية (مثل: التدخين، الغبار، العطور القوية، الحيوانات الأليفة، والالتهابات الفيروسية).</p>
+                </div>
+                <div class="info-box">
+                    <h4><i class="fas fa-running"></i> النشاط البدني:</h4>
+                    <p>شجع طفلك على الرياضة الآمنة، واستخدم البخاخ الإسعافي قبل الجهد إذا لزم الأمر.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- دليل الطوارئ -->
+        <div id="emergency" class="section-card reveal">
+            <h2><i class="fas fa-notes-medical"></i> دليل الطوارئ للتعامل مع نوبة الربو</h2>
+            <div class="emergency-container">
+                
+                <!-- نوبة خفيفة -->
+                <div class="emerg-card emerg-mild">
+                    <h3>نوبة خفيفة إلى متوسطة</h3>
+                    <h4>العلامات:</h4>
+                    <ul class="ul-clean">
+                        <li><i class="fas fa-caret-left"></i> سعال مستمر أو صفير خفيف بالصدر.</li>
+                        <li><i class="fas fa-caret-left"></i> الطفل قادر على التحدث بجمل كاملة.</li>
+                    </ul>
+                    <h4>الإجراء السريع:</h4>
+                    <ul class="ul-clean">
+                        <li><i class="fas fa-check-circle"></i> إجلاس الطفل بوضعية مستقيمة وتهدئته.</li>
+                        <li><i class="fas fa-check-circle"></i> إعطاء 2 إلى 4 بخات من البخاخ الإسعافي (الأزرق) باستخدام أنبوب المباعدة.</li>
+                        <li><i class="fas fa-check-circle"></i> الانتظار 15 دقيقة؛ إذا تحسن يمكنه إكمال يومه.</li>
+                    </ul>
+                </div>
+                
+                <!-- نوبة شديدة -->
+                <div class="emerg-card emerg-severe">
+                    <h3>نوبة شديدة وطارئة</h3>
+                    <h4>العلامات:</h4>
+                    <ul class="ul-clean">
+                        <li><i class="fas fa-caret-left"></i> صعوبة شديدة في التنفس وعدم القدرة على الكلام.</li>
+                        <li><i class="fas fa-caret-left"></i> ازرقاق الشفاه أو انخساف الجلد بين الأضلاع.</li>
+                    </ul>
+                    <h4>الإجراء السريع:</h4>
+                    <ul class="ul-clean">
+                        <li><i class="fas fa-ambulance"></i> توجه فوراً للطوارئ أو اتصل بالإسعاف.</li>
+                        <li><i class="fas fa-sync-alt"></i> استمر في إعطاء بخة إسعافية كل 30 إلى 60 ثانية (حتى 10 بخات) لحين وصول المساعدة.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- المدرسة والحقيبة -->
+        <div id="school" class="section-card reveal">
+            <h2><i class="fas fa-backpack"></i> الربو في المدرسة وقائمة الخروج</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--primary-orange); margin-top: 0;">الربو في المدرسة</h3>
+                    <div class="info-box" style="margin-bottom: 15px;">
+                        <h4>التواصل مع المدرسة:</h4>
+                        <p>أبلغ الإدارة بمهيجات الربو لدى طفلك، وزودهم ببخاخ إسعافي (أزرق) وأنبوب مباعدة إضافي يُترك في عهدة المعلم أو ممرض المدرسة.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>حقوق الطفل في الصف:</h4>
+                        <p>السماح له باستخدام البخاخ فوراً عند السعال المستمر أو الشعور بضيق في التنفس دون انتظار أو استئذان.</p>
+                    </div>
+                </div>
+                
+                <div class="school-bag-wrapper">
+                    <h3 style="color: var(--dark-orange); margin-top: 0;"><i class="fas fa-shopping-bag"></i> قائمة حقيبة خروج الطفل</h3>
+                    <ul class="ul-clean" style="color: var(--text-dark);">
+                        <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> بخاخ الربو الإسعافي (موسع القصبات).</li>
+                        <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> أنبوب المباعدة (Spacer) المخصص لعمره.</li>
+                        <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> مناديل مبللة ومعقم يدين (للوقاية من الفيروسات التنفسية).</li>
+                        <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> بطاقة طبية صغيرة تحمل اسم الطفل ورقم هاتف ولي الأمر للطوارئ.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- الدعم النفسي وحقائق -->
+        <div id="facts" class="section-card reveal">
+            <h2><i class="fas fa-brain"></i> الدعم النفسي وحقائق تصحح المفاهيم</h2>
+            
+            <div class="grid-2" style="margin-bottom: 30px;">
+                <div style="border-right: 4px solid var(--primary-orange); padding-right: 15px;">
+                    <h3 style="color: var(--dark-orange); margin-top: 0;">الدعم النفسي للطفل</h3>
+                    <h4 style="margin: 0 0 5px 0; color: var(--text-dark);">طمأنة الطفل:</h4>
+                    <p style="margin-bottom: 15px;">التوتر والخوف يزيدان من سرعة التنفس وضيقه؛ حافظ على هدوئك أثناء النوبة لتنعكس طمأنينتك على طفلك.</p>
+                    <h4 style="margin: 0 0 5px 0; color: var(--text-dark);">الاستقلالية:</h4>
+                    <p>درّبه تدريجياً وبإشرافك على تركيب أنبوب المباعدة واستخدام البخاخ بنفسه لبناء ثقته وتقليل شعوره بالعجز.</p>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary-orange); margin-top: 0;">حقائق تصحح المفاهيم</h3>
+                    <ul class="ul-clean" style="color: var(--text-dark);">
+                        <li style="margin-bottom: 15px;">
+                            <i class="fas fa-lightbulb" style="color: var(--primary-orange); font-size: 1.3rem;"></i> 
+                            <div><strong>لا يسبب الإدمان:</strong> بخاخات الربو علاج آمن جداً وموضعي للرئتين، والطفل لا "يُدمن" عليها كما يُشاع خطأً.</div>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <i class="fas fa-lightbulb" style="color: var(--primary-orange); font-size: 1.3rem;"></i> 
+                            <div><strong>الربو ليس معدياً:</strong> هو تحسس والتهاب مزمن في القصبات الهوائية، ولا ينتقل بالاختلاط واللعب مع الأطفال الآخرين.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-lightbulb" style="color: var(--primary-orange); font-size: 1.3rem;"></i> 
+                            <div><strong>الرياضة مسموحة:</strong> الربو لا يمنع التفوق الرياضي (العديد من الأبطال الأولمبيين مصابون بالربو). السر يكمن في التحكم بالمرض، وأخذ بخاخ موسع القصبات قبل الجهد بـ 15 دقيقة إذا لزم الأمر.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p style="margin: 0; font-weight: 700;">مع تمنياتنا لكم ولاطفالكم بدوام الصحة والعافية</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 15px;">إعداد طلبة الماجستير: محمد القرعان، سيف الدين غانم، حذيفة المشاقبة | إشراف: أ.د. لؤي طوالبة</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 80; 
+                if(revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal(); 
+    </script>
+
+</body>
+</html>
